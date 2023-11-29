@@ -16,7 +16,7 @@ ExternalProject_Add(
   BUILD_IN_SOURCE ON
   CONFIGURE_COMMAND "./configure" "--prefix=${CMAKE_INSTALL_PREFIX}"
   BUILD_COMMAND "make"
-  #TEST_COMMAND "make" "check"
+  # TEST_COMMAND "make" "check"
   INSTALL_COMMAND "make" "install")
 
 # dummy file for install target
