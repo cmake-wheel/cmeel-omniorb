@@ -7,6 +7,12 @@ set(SHA1 b6581c9b6a956c1d442c442767b5a58899a09513)
 
 project(cmeel-${NAME} VERSION ${VERSION})
 
+if(APPLE)
+  set(ORIGIN "@loader_path")
+else()
+  set(ORIGIN "\$\$ORIGIN")
+endif()
+
 include(ExternalProject)
 ExternalProject_Add(
   ${NAME}
@@ -14,7 +20,8 @@ ExternalProject_Add(
   URL_HASH "SHA1=${SHA1}"
   DOWNLOAD_EXTRACT_TIMESTAMP ON
   BUILD_IN_SOURCE ON
-  CONFIGURE_COMMAND "./configure" "--prefix=${CMAKE_INSTALL_PREFIX}"
+  CONFIGURE_COMMAND ${CMAKE_COMMAND} "-E" "env" "LDFLAGS=-Wl,-rpath,'${ORIGIN}'"
+                    "--" "./configure" "--prefix=${CMAKE_INSTALL_PREFIX}"
   BUILD_COMMAND "make"
   # TEST_COMMAND "make" "check"
   INSTALL_COMMAND "make" "install")
