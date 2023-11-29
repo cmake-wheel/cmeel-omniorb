@@ -9,8 +9,10 @@ project(cmeel-${NAME} VERSION ${VERSION})
 
 if(APPLE)
   set(ORIGIN "@loader_path")
+  set(BUILD "")
 else()
   set(ORIGIN "\$\$ORIGIN")
+  set(BUILD "--build=${CMAKE_HOST_SYSTEM_PROCESSOR}-unknown-linux-gnu")
 endif()
 
 include(ExternalProject)
@@ -20,8 +22,9 @@ ExternalProject_Add(
   URL_HASH "SHA1=${SHA1}"
   DOWNLOAD_EXTRACT_TIMESTAMP ON
   BUILD_IN_SOURCE ON
-  CONFIGURE_COMMAND ${CMAKE_COMMAND} "-E" "env" "LDFLAGS=-Wl,-rpath,'${ORIGIN}'"
-                    "--" "./configure" "--prefix=${CMAKE_INSTALL_PREFIX}"
+  CONFIGURE_COMMAND
+    ${CMAKE_COMMAND} "-E" "env" "LDFLAGS=-Wl,-rpath,'${ORIGIN}'" "--"
+    "./configure" "--prefix=${CMAKE_INSTALL_PREFIX}" "${BUILD}"
   BUILD_COMMAND "make"
   # TEST_COMMAND "make" "check"
   INSTALL_COMMAND "make" "install")
