@@ -27,7 +27,10 @@ ExternalProject_Add(
     "./configure" "--prefix=${CMAKE_INSTALL_PREFIX}" "${BUILD}"
   BUILD_COMMAND "make"
   # TEST_COMMAND "make" "check"
-  INSTALL_COMMAND "make" "install")
+  INSTALL_COMMAND "make" "install"
+  COMMAND "sed" "-i.bak" "s=^#!.*python.*$=#!/usr/bin/env python=" "${CMAKE_INSTALL_PREFIX}/bin/omniidl"
+  COMMAND ${CMAKE_COMMAND} "-E" "rm" "${CMAKE_INSTALL_PREFIX}/bin/omniidl.bak"
+  )
 
 # dummy file for install target
 install(FILES README.md DESTINATION share/cmeel-${NAME}/)
