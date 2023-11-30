@@ -1,6 +1,6 @@
 [build-system]
 build-backend = "cmeel"
-requires = ["cmeel[build]"]
+requires = ["cmeel[build] >= 0.53"]
 
 [project]
 description = "cmeel distribution for omniORB"
