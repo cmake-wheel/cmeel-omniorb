@@ -15,6 +15,7 @@ repository = "https://github.com/cmake-wheel/cmeel-omniorb.git"
 upstream = "https://omniorb.sourceforge.io/"
 
 [tool.cmeel]
+build-number = 1
 run-tests = false
 
 [tool.tomlsort]
