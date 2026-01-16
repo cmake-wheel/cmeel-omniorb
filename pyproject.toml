@@ -7,7 +7,7 @@ description = "cmeel distribution for omniORB"
 license = "LGPL-2.0-or-later"
 name = "cmeel-omniorb"
 requires-python = ">= 3.10"
-version = "4.3.1.2"
+version = "4.3.4"
 
 [project.urls]
 homepage = "https://github.com/cmake-wheel/cmeel-omniorb"
@@ -16,7 +16,6 @@ upstream = "https://omniorb.sourceforge.io/"
 
 [tool.cmeel]
 run-tests = false
-upstream-version = "4.3.1"
 
 [tool.tomlsort]
 all = true
