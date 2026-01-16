@@ -1,11 +1,11 @@
 cmake_minimum_required(VERSION 3.20)
 
 set(NAME omniorb)
-set(VERSION 4.3.1)
+set(VERSION 4.3.4)
 set(EXT tar.bz2)
-set(SHA1 b6581c9b6a956c1d442c442767b5a58899a09513)
+set(SHA256 79720d415d23cd8da99287a4ef4da0aa1bd34d3e4c7b1530715600adc5ed3dc3)
 
-project(cmeel-${NAME} VERSION ${VERSION})
+project("cmeel-${NAME}" VERSION "${VERSION}")
 
 if(APPLE)
   set(ORIGIN "@loader_path")
@@ -19,7 +19,7 @@ include(ExternalProject)
 ExternalProject_Add(
   ${NAME}
   URL "http://downloads.sourceforge.net/${NAME}/omniORB-${VERSION}.${EXT}"
-  URL_HASH "SHA1=${SHA1}"
+  URL_HASH "SHA256=${SHA256}"
   DOWNLOAD_EXTRACT_TIMESTAMP ON
   BUILD_IN_SOURCE ON
   CONFIGURE_COMMAND
@@ -33,4 +33,4 @@ ExternalProject_Add(
   COMMAND ${CMAKE_COMMAND} "-E" "rm" "${CMAKE_INSTALL_PREFIX}/bin/omniidl.bak")
 
 # dummy file for install target
-install(FILES README.md DESTINATION share/cmeel-${NAME}/)
+install(FILES "README.md" DESTINATION "share/cmeel-${NAME}/")
